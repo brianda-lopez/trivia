@@ -9,7 +9,6 @@
 
  $(document).ready(function(){
 console.log ("Trivia Game running")
-Decrement();
 }
 );
 
@@ -17,14 +16,14 @@ function countdown () {
     setTimeout (Decrement(), 60);
 }
 
-   async function f(){
-   var promise = new Promise ((resolve, reject)=> {
-     setTimeout (() => resolve ("done!"), 1000)  
-    });    
-    var result = await promise;
-    alert(result);
-}
-    f();
+//    async function f(){
+//    var promise = new Promise ((resolve, reject)=> {
+//      setTimeout (() => resolve ("done!"), 1000)  
+//     });    
+//     var result = await promise;
+//     alert(result);
+// }
+//     f();
 
 
 
@@ -69,21 +68,22 @@ function getseconds (){
 
 
 
-    $("#start-button").on("click", function() {
-        var questions = [{
-            prompt :" What is the pH of lemon juice?\n (a)acidic \n (b)neutral \n (c)basic",
-            answer :"a"
-        }, {prompt :"what is the pH of milk?\n (a)acidic \n (b)neutral \n (c)basic",
-        answer :"c"
-        }];
-        for (var i = 0; i <questions.length; i++){
-        var response =window.prompt(questions[i].prompt);
-        if (response == questions[i].answer){
-         score++;
-         alert('correct!');
-     } else {
-         alert('wrong!');
-     }
+$("#start-button").on("click", function() {
+    Decrement();
+    var questions = [{
+        prompt :" What is the pH of lemon juice?\n (a)acidic \n (b)neutral \n (c)basic",
+        answer :"a"
+    }, {prompt :"what is the pH of milk?\n (a)acidic \n (b)neutral \n (c)basic",
+    answer :"c"
+    }];
+    for (var i = 0; i <questions.length; i++){
+    var response = window.prompt(questions[i].prompt);
+    if (response == questions[i].answer){
+        score++;
+        alert('correct!');
+    } else {
+        alert('wrong!');
+    }
  }
 
 });
