@@ -2,8 +2,10 @@
 //1. Declare variables 
  var score = 0;
 
- var mins ;
- var secs = mins * 60;
+//  var mins ;
+//  var secs = mins * 60;
+
+ var countDownID = null;
 
  //2. Declare javascript runs after HTML and the start button
 
@@ -13,9 +15,19 @@ console.log ("Trivia Game running")
 );
 
 function countdown () {
-    setTimeout (Decrement(), 60);
+    countDownID = setInterval (Decrement, stepAmount);
 }
+ var tenSeconds = 10000;
+ var stepAmount = 1000;
 
+  function Decrement(){
+     tenSeconds = tenSeconds - stepAmount;
+     if (tenSeconds < 0){
+         clearInterval(countDownID);
+         alert("time's up");
+     }
+    $("#time-display").text(tenSeconds);
+  }
 //    async function f(){
 //    var promise = new Promise ((resolve, reject)=> {
 //      setTimeout (() => resolve ("done!"), 1000)  
@@ -29,47 +41,47 @@ function countdown () {
 
 
 //3. Decrement time to answer the trivia
-async function Decrement (){
-    var promise = new Promise ((resolve, reject) =>{
-        setTimeout(() => {
-            document.getElementById('Minutes');
-            document.getElementById('Seconds');
-            var seconds = $("#Minutes");
-            var minutes = $("#Seconds");
-            console.log ("promise");
+// async function Decrement (){
+//     var promise = new Promise ((resolve, reject) =>{
+//         setTimeout(() => {
+//             document.getElementById('Minutes');
+//             document.getElementById('Seconds');
+//             var seconds = $("#Minutes");
+//             var minutes = $("#Seconds");
+//             console.log ("promise");
             
             
         
-                seconds.html = getseconds();
-                minutes.html = getminutes();
-                console.log ("B");
+//                 seconds.html = getseconds();
+//                 minutes.html = getminutes();
+//                 console.log ("B");
             
-            if (mins < 0){
-                alert('time up');
-                minutes.html = 0;
-                seconds.html = 0;
-            } else { 
-                secs--;
-                console.log("C");
-            }
-            resolve("done");
-        }, 1000)});
-    await promise;
-} 
+//             if (mins < 0){
+//                 alert('time up');
+//                 minutes.html = 0;
+//                 seconds.html = 0;
+//             } else { 
+//                 secs--;
+//                 console.log("C");
+//             }
+//             resolve("done");
+//         }, 1000)});
+//     await promise;
+// } 
 
-function getminutes (){
-minutes = Math.floor (secs /60);
-    return mins;
-}
+// function getminutes (){
+// minutes = Math.floor (secs /60);
+//     return mins;
+// }
 
-function getseconds (){
-    return secs - Math.round (mins * 60);
-}
+// function getseconds (){
+//     return secs - Math.round (mins * 60);
+// }
 
 
 
 $("#start-button").on("click", function() {
-    Decrement();
+    countdown();
     var questions = [{
         prompt :" What is the pH of lemon juice?\n (a)acidic \n (b)neutral \n (c)basic",
         answer :"a"
